@@ -3,5 +3,7 @@
 """Top-level package for GFW Creator."""
 
 __author__ = """Paul Gierz"""
-__email__ = 'pgierz@awi.de'
-__version__ = '0.1.0'
+__email__ = "pgierz@awi.de"
+__version__ = "0.1.0"
+
+from .gfw_creator import *
