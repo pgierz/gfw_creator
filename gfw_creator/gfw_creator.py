@@ -67,8 +67,7 @@ def create_homogeneous_hosing(lat_0, lat_1, lon_0, lon_1, hosing_strength):
     # `hosing_strength` is given in Sv. Convert this to m3/s:
     #
     # 1 Sv = 10**6 m3/s
-    # 1 m3/s = 1 Sv / 1.e6
-    hosing_strength /= 1.0e6
+    hosing_strength *= 1.0e6
     # The gfw_atmo file must be given in m/s, so we divide by the area for
     # conversion m3/s --> m/s :
     hosing_per_area = hosing_strength / _lat_lon_area(lat_0, lat_1, lon_0, lon_1)
