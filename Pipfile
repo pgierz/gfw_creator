@@ -5,7 +5,6 @@ verify_ssl = true
 [dev-packages]
 bumpversion = "*"
 wheel = "*"
-watchdog = "*"
 flake8 = "*"
 tox = "*"
 coverage = "*"
@@ -14,10 +13,9 @@ pytest-runner = "*"
 PyInstaller = "*"
 Sphinx = "*"
 twine = "*"
-ipython = "*"
+gfw_creator = {editable = true, path = "."}
 
 [packages]
-gfw_creator = {editable = true, path = "."}
 click = "*"
 xarray = "*"
 netcdf4 = "*"
