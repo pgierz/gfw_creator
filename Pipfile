@@ -19,5 +19,5 @@ gfw_creator = {editable = true, path = "."}
 click = "*"
 xarray = "*"
 netcdf4 = "*"
-cdo = "*"
-pkg = {git = "https://github.com/Try2Code/cdo-bindings", subdirectory = "python"}
+cdo = {git = "https://github.com/Try2Code/cdo-bindings", subdirectory = "python"}
+zipp = {editable = true, path = "."}
