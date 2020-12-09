@@ -39,7 +39,7 @@ def _load_template_file():
         on the standard ECHAM6 T63 grid.
     """
     df = xr.open_dataset(_get_template_file())
-    df.coords['lon'] = (df.coords['lon'] + 180) % 360 - 180
+    df.coords["lon"] = (df.coords["lon"] + 180) % 360 - 180
     df = df.sortby(df.lon)
     return df
 
@@ -50,7 +50,10 @@ def _lat_lon_area(lat_0, lat_1, lon_0, lon_1):
     total area
     """
     ds = _get_template_file()
-    selected_ds = CDO.fldsum(input=f"-sellonlatbox,{lon_0},{lon_1},{lat_0},{lat_1} -selname,cell_area {ds}", returnXDataset=True)
+    selected_ds = CDO.fldsum(
+        input=f"-sellonlatbox,{lon_0},{lon_1},{lat_0},{lat_1} -selname,cell_area {ds}",
+        returnXDataset=True,
+    )
     return selected_ds.cell_area.data.squeeze()
 
 
@@ -59,9 +62,21 @@ def create_homogeneous_hosing(lat_0, lat_1, lon_0, lon_1, hosing_strength):
     Creates a homogeneous hosing field
     """
     ds = _get_template_file()
-    # hosing strength is given in Sv. Convert this to m3/s
+    # Notes:
+    # ------
+    # `hosing_strength` is given in Sv. Convert this to m3/s:
+    #
     # 1 Sv = 10**6 m3/s
-    hosing_strength /= 1.e6
+    # 1 m3/s = 1 Sv / 1.e6
+    hosing_strength /= 1.0e6
+    # The gfw_atmo file must be given in m/s, so we divide by the area for
+    # conversion m3/s --> m/s :
     hosing_per_area = hosing_strength / _lat_lon_area(lat_0, lat_1, lon_0, lon_1)
-    gfw_atmo_file = CDO.setclonlatbox(f"{hosing_per_area},{lon_0},{lon_1},{lat_0},{lat_1}", input=ds, returnXDataset=True)
+    # Now that the hosing strength has been determined, set it in the NetCDF
+    # file:
+    gfw_atmo_file = CDO.setclonlatbox(
+        f"{hosing_per_area},{lon_0},{lon_1},{lat_0},{lat_1}",
+        input=ds,
+        returnXDataset=True,
+    )
     return gfw_atmo_file
