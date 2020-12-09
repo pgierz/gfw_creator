@@ -3,7 +3,6 @@
 """Main module."""
 
 import cdo
-import numpy as np
 import xarray as xr
 
 import os
@@ -60,6 +59,9 @@ def create_homogeneous_hosing(lat_0, lat_1, lon_0, lon_1, hosing_strength):
     Creates a homogeneous hosing field
     """
     ds = _get_template_file()
+    # hosing strength is given in Sv. Convert this to m3/s
+    # 1 Sv = 10**6 m3/s
+    hosing_strength /= 1.e6
     hosing_per_area = hosing_strength / _lat_lon_area(lat_0, lat_1, lon_0, lon_1)
     gfw_atmo_file = CDO.setclonlatbox(f"{hosing_per_area},{lon_0},{lon_1},{lat_0},{lat_1}", input=ds, returnXDataset=True)
     return gfw_atmo_file
