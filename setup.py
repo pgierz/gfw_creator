@@ -11,7 +11,7 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', "xarray", "cdo"]
+requirements = ['Click>=6.0', "xarray", "cdo", "netcdf4",]
 
 setup_requirements = ['pytest-runner', ]
 
