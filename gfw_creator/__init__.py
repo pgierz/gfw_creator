@@ -4,6 +4,6 @@
 
 __author__ = """Paul Gierz"""
 __email__ = "pgierz@awi.de"
-__version__ = "0.0.1"
+__version__ = "__version__ = '0.0.2'"
 
 from .gfw_creator import *
