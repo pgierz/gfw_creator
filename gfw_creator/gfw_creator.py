@@ -7,10 +7,18 @@ import xarray as xr
 
 import os
 import pkgutil
+import subprocess
+import sys
 
 
-CDO = cdo.Cdo()
-
+def build_cdo_object():
+    try:
+        return cdo.Cdo()
+    except Exception as e:
+        print("Python exception:", e)
+        print("Unable to use CDO, this won't work, sorry...")
+        print("You may consider running >> module load cdo << and trying to run again")
+        sys.exit(1)
 
 def _get_template_file():
     """
@@ -49,6 +57,7 @@ def _lat_lon_area(lat_0, lat_1, lon_0, lon_1):
     Figures out the area of a lat/lon box for distributing a flux across a
     total area
     """
+    CDO = build_cdo_object()
     ds = _get_template_file()
     selected_ds = CDO.fldsum(
         input=f"-sellonlatbox,{lon_0},{lon_1},{lat_0},{lat_1} -selname,cell_area {ds}",
@@ -61,6 +70,7 @@ def create_homogeneous_hosing(lat_0, lat_1, lon_0, lon_1, hosing_strength):
     """
     Creates a homogeneous hosing field
     """
+    CDO = build_cdo_object()
     ds = _get_template_file()
     # Notes:
     # ------
