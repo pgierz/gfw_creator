@@ -1,12 +1,14 @@
-## v0.1.1 (2020-12-22)
+## v0.2.0 (2020-12-22)
 
 ### Fix
 
 - **setup**: adds real cdo dependency
-
-## v0.0.1 (2020-12-10)
-
-### Fix
-
+- bumpversion fixup
+- fixup version numbers
 - fixes unit conversion (it was the wrong way around)
 - **gfw_creator**: applies unit conversions to file, assumes user gives Sv
+
+### Feat
+
+- plugin works
+- works except for unit conversion
