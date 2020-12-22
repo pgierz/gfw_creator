@@ -14,7 +14,7 @@ with open("HISTORY.rst") as history_file:
 requirements = [
     "Click>=6.0",
     "xarray",
-    "cdo@git+https://github.com/Try2Code/cdo-bindings#egg=pkg&subdirectory=python",
+    "cdo",
     "netcdf4",
 ]
 
