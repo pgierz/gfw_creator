@@ -2,3 +2,6 @@ commitizen:
   name: cz_conventional_commits
   tag_format: v$version
   version: 0.2.0
+  version_files:
+      - setup.py:version
+      - gfw_creator/__init__.py:__version__
