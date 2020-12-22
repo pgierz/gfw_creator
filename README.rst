@@ -3,11 +3,11 @@ GFW Creator
 ===========
 
 
-.. image:: https://img.shields.io/pypi/v/gfw_creator.svg
+.. image:: https://img.shields.io/pypi/v/gfw-creator.svg
         :target: https://pypi.python.org/pypi/gfw_creator
 
-.. image:: https://img.shields.io/travis/pgierz/gfw_creator.svg
-        :target: https://travis-ci.org/pgierz/gfw_creator
+.. image:: https://github.com/pgierz/gfw_creator/workflows/Python%20package/badge.svg
+        :target: https://github.com/pgierz/gfw_creator/actions
 
 .. image:: https://readthedocs.org/projects/gfw-creator/badge/?version=latest
         :target: https://gfw-creator.readthedocs.io/en/latest/?badge=latest
