@@ -1,3 +1,9 @@
+## v0.2.1 (2020-12-22)
+
+### Fix
+
+- fixes version numbers, adds commitizen config to automatically increment versions
+
 ## v0.2.0 (2020-12-22)
 
 ### Fix
