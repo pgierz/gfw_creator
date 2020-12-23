@@ -1,6 +1,6 @@
-===========
-GFW Creator
-===========
+============================================
+GFW Creator: Create FW Perturbation Forcings
+============================================
 
 
 .. image:: https://img.shields.io/pypi/v/gfw-creator.svg
@@ -14,9 +14,7 @@ GFW Creator
         :alt: Documentation Status
 
 
-
-
-GFW Creator allows you to generate files for the gfw_atmo switch in ECHAM6/JSBACH of AWI-ESM
+GFW Creator allows you to generate files for the ``gfw_atmo`` switch in ``ECHAM6/JSBACH`` of ``AWI-ESM``
 
 
 * Free software: GNU General Public License v3
@@ -25,14 +23,7 @@ GFW Creator allows you to generate files for the gfw_atmo switch in ECHAM6/JSBAC
 
 Features
 --------
-
-* TODO
-
-Credits
--------
-
-This package was created with Cookiecutter_ and the `elgertam/cookiecutter-pipenv`_ project template, based on `audreyr/cookiecutter-pypackage`_.
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`elgertam/cookiecutter-pipenv`: https://github.com/elgertam/cookiecutter-pipenv
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+* Command line utility ``gfw_creator`` to generate suitable forcing files for
+  either homogenous freshwater flux or from a reconstruction.
+* Plugin for the ``esm-tools`` runtime infrastructure framework.
+* Library usage to generate hosing files from other Python scripts.

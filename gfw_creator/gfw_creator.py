@@ -1,6 +1,39 @@
 # -*- coding: utf-8 -*-
 
-"""Main module."""
+"""
+To use GFW Creator in a project::
+
+    import gfw_creator
+
+This gives you access to several functions, which are documented in detail in
+the API section. The most important one is::
+
+    >>> gfw_creator.create_homogenous_hosing
+    <function create_homogeneous_hosing at 0x119820510>
+    >>> # To use this, give lat/lon coordinates, and a hosing strength
+    >>> hosing_ds = gfw_creator.create_homogeneous_hosing(45, 60, -30, -10, 0.15)
+    >>> hosing_ds
+    <xarray.Dataset>
+    Dimensions:    (lat: 96, lon: 192)
+    Coordinates:
+      * lon        (lon) float64 0.0 1.875 3.75 5.625 ... 352.5 354.4 356.2 358.1
+      * lat        (lat) float64 88.57 86.72 84.86 83.0 ... -84.86 -86.72 -88.57
+    Data variables:
+        cell_area  (lat, lon) float64 ...
+        gfw_atmo   (lat, lon) float32 ...
+    Attributes:
+        CDI:          Climate Data Interface version 1.9.2 (http://mpimet.mpg.de/...
+        Conventions:  CF-1.6
+        history:      Wed Dec 23 14:28:30 2020: cdo -O -f nc -setclonlatbox,6.454...
+        Comments:     Freshwater forcing file for use with the gfw_atmo switch in...
+        Creators:     Dr. Paul Gierz (pgierz@awi.de)
+        Institute:    Alfred Wegener Institute, Helmholtz Centre for Polar and Ma...
+        CDO:          Climate Data Operators version 1.9.2 (http://mpimet.mpg.de/...
+
+Since you get back `an xarray.Dataset object
+<http://xarray.pydata.org/en/stable/generated/xarray.Dataset.html#xarray-dataset>`_,
+you can easily continue working with this for further analysis or plotting.
+"""
 
 import cdo
 import xarray as xr
@@ -68,7 +101,23 @@ def _lat_lon_area(lat_0, lat_1, lon_0, lon_1):
 
 def create_homogeneous_hosing(lat_0, lat_1, lon_0, lon_1, hosing_strength):
     """
-    Creates a homogeneous hosing field
+    Creates a homogeneous hosing field.
+
+    Generates a uniform hosing field bounded by the box (``lat_0``, ``lon_0``)
+    to (``lat_1``, ``lon_1``). The parameter ``hosing_strength`` is given in
+    Sv, yet the resulting field has units m/s.
+
+    Parameters
+    ----------
+    lat_0 : float
+    lat_1 : float
+    lon_0 : float
+    lon_1 : float
+    hosing_strength : float
+
+    Returns
+    -------
+    xarray.Dataset
     """
     CDO = build_cdo_object()
     ds = _get_template_file()
