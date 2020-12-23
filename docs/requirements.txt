@@ -3,4 +3,5 @@ loguru
 cdo
 xarray
 sphinxcontrib.napoleon
+releases
 sphinx_copybutton
