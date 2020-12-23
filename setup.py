@@ -13,9 +13,10 @@ with open("HISTORY.rst") as history_file:
 
 requirements = [
     "Click>=6.0",
-    "xarray",
     "cdo",
+    "loguru",
     "netcdf4",
+    "xarray",
 ]
 
 setup_requirements = [

@@ -1,3 +1,5 @@
+click
+loguru
 cdo
 xarray
 sphinxcontrib.napoleon
