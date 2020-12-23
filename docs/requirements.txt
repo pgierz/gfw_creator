@@ -1,2 +1,4 @@
 cdo
 xarray
+sphinxcontrib.napoleon
+sphinx_copybutton

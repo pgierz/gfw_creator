@@ -5,6 +5,9 @@ This is the main command line interface for the ``gfw_creator``. You can view
 this help by typing either of the following::
 
     $ man gfw_creator
+
+or::
+
     $ pydoc gfw_creator.cli
 
 You can create a uniform hosing field over a rectangular area with the
@@ -23,7 +26,7 @@ directory, and can be used with the AWI-ESM gfw_atmo switch. Below is the result
 
 .. image:: _static/ncview_screenshot.png
   :width: 400
-  :alt: Alternative text
+  :alt: GFW Creator output for 45 to 60N, -30 to -10W with 0.15 Sv.
 """
 import gfw_creator
 
