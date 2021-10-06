@@ -10,7 +10,6 @@ def create_hosing_files(config):
         if config["fesom"].get("do_hosing"):
             logger.info("Creating hosing files...")
             hosing_type = config["fesom"].get("hosing_type")
-            config['oasis3mct']['coupling_target_fields']['a2o_flux'].append("gfw_atmo <--input-- from_file")
             if hosing_type == "homogeneous":
                 lat_0 = config["fesom"]["hosing_lat0"]
                 lat_1 = config["fesom"]["hosing_lat1"]

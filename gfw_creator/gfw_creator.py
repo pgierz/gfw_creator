@@ -36,6 +36,18 @@ def _get_template_file():
     return os.path.abspath(template_file_path)
 
 
+def _get_taxis_template_file():
+    """
+    Gets a taxis file with days of the year
+    """
+    template_file_path = "./taxis.nc"
+    template_file_data = pkgutil.get_data("gfw_creator", "data/taxis.nc")
+    with open(template_file_path, "wb") as template_file:
+        template_file.write(template_file_data)
+    return os.path.abspath(template_file_path)
+
+
+
 def _load_template_file():
     """
     Loads the template file to be modified.
@@ -43,8 +55,7 @@ def _load_template_file():
     Returns
     -------
     xr.Dataset :
-        The template dataset, has 0 everywhere with 366 day timesteps. This is
-        on the standard ECHAM6 T63 grid.
+        The template dataset, this is on the standard ECHAM6 T63 grid. The time axis is added in a second step.
     """
     df = xr.open_dataset(_get_template_file())
     df.coords["lon"] = (df.coords["lon"] + 180) % 360 - 180
@@ -88,4 +99,14 @@ def create_homogeneous_hosing(lat_0, lat_1, lon_0, lon_1, hosing_strength):
         input=ds,
         returnXDataset=True,
     )
-    return gfw_atmo_file
+    taxis_file = _get_taxis_template_file()
+
+    taxis_ds = xr.open_dataset(taxis_file)
+
+
+    print("Hello, adding taxis to the template file!")
+    gfw_atmo_file_with_taxis = xr.merge([taxis_ds, gfw_atmo_file])
+    # Might be: xr.merge?
+    # gfw_atmo_file_with_taxis = os.system(f"ncks -A {taxis_file} {gfw_atmo_file}")
+    print("All done!")
+    return gfw_atmo_file_with_taxis
